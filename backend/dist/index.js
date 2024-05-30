@@ -5,11 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // src/index.ts
 const express_1 = __importDefault(require("express"));
+const database_1 = require("./config/db/database");
+const envconfig_1 = require("./config/envconfig");
 const app = (0, express_1.default)();
 const port = 3000;
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+// Connect to MongoDB
+(0, database_1.connectDB)();
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
-app.listen(port, () => {
+app.listen(envconfig_1.envConfig.server.PORT, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
