@@ -344,10 +344,10 @@ const addQuestions = async () => {
     console.log('all Questions saved');
 };
 
-const run = async () => {
+export const run = async () => {
     await connectDB();
     await addQuestions();
     mongoose.connection.close();
 };
 
-run();
+// run();

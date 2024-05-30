@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { ConnectOptions } from 'mongoose';
 export const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://0.0.0.0:27017/myapp', {
+        await mongoose.connect('mongodb://0.0.0.0:27017/quiz', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         } as ConnectOptions);
