@@ -16,4 +16,5 @@ yarn-error.log*
 
 # Build directory
 backend/dist
+backend/dist/index.js
 front/dist
