@@ -8,5 +8,6 @@ const OptionSchema = new mongoose.Schema({
 export const QuestionSchema = new mongoose.Schema({
   questionText: { type: String, required: true },
   options: { type: [OptionSchema], required: true },
-  diffculty: { type: String, required: true },
+  difficulty: { type: String, enum: ['easy', 'medium', 'hard'], required: true },
+  category: { type: String, required: true }, // e.g. "Science, Computers, History, Politics, Art, etc."
 });
