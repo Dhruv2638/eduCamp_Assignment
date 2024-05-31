@@ -1,11 +1,17 @@
 // src/index.ts
-import express from "express";
+import express, { Application } from "express";
 import { connectDB } from "./config/db/database";
 import { envConfig } from "./config/envconfig";
-import { run } from "./script/database-setup";
+import authRoutes from "./routes/authRoutes";
+import passport from "passport";
 
-const app = express();
-const port = 3000;
+const app: Application = express();
+const port = envConfig.server.PORT;
+
+app.use(express.json());
+app.use(passport.initialize());
+
+app.use("/api/auth", authRoutes);
 // Connect to MongoDB
 connectDB();
 // run();
@@ -14,6 +20,6 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(envConfig.server.PORT, () => {
+app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
