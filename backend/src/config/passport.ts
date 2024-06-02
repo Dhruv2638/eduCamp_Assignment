@@ -28,7 +28,7 @@ passport.use(
   )
 );
 
-passport.serializeUser((user: IUser, done) => {
+passport.serializeUser((user: any, done) => {
   done(null, user.id);
 });
 

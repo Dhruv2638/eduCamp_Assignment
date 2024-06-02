@@ -13,7 +13,7 @@ export const authMiddleware = async (
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-    req.user = await User.findById((decoded as any).id);
+    req.user = await User.findById((decoded as any).id) as any; // Add type assertion here
     next();
   } catch (err) {
     res.status(401).json({ message: "Token is not valid" });

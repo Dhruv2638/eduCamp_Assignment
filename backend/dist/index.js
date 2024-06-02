@@ -7,15 +7,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const database_1 = require("./config/db/database");
 const envconfig_1 = require("./config/envconfig");
-const database_setup_1 = require("./script/database-setup");
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const passport_1 = __importDefault(require("passport"));
 const app = (0, express_1.default)();
-const port = 3000;
+const port = envconfig_1.envConfig.server.PORT;
+app.use(express_1.default.json());
+app.use(passport_1.default.initialize());
+app.use("/api/auth", authRoutes_1.default);
 // Connect to MongoDB
 (0, database_1.connectDB)();
-(0, database_setup_1.run)();
+// run();
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
-app.listen(envconfig_1.envConfig.server.PORT, () => {
+app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

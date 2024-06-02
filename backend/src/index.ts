@@ -8,18 +8,15 @@ import passport from "passport";
 const app: Application = express();
 const port = envConfig.server.PORT;
 
+// Connect to MongoDB
+connectDB();
 app.use(express.json());
 app.use(passport.initialize());
 
 app.use("/api/auth", authRoutes);
-// Connect to MongoDB
-connectDB();
-// run();
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/ping", (req, res) => {
+  res.send("Server is running");
 });
-
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
